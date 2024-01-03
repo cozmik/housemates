@@ -1,0 +1,325 @@
+<section class="shadow-[0_0_10px_0_rgba(0,0,0,0.2)] pt-4">
+  <div class="w-full h-[4px] bg-primary-blue"></div>
+  <h3 class="px-4 my-4 font-medium text-xl">POST A ROOM</h3>
+  <form class="px-4" [formGroup]="listingForm" (submit)="submitListing()">
+    <div>
+      <span>Type</span>
+      <!--      TODO add tooltip here-->
+      <div class="inline-radio">
+        <label><input formControlName="listingGroupBy" type="radio" value="student"><span>For Students</span></label>
+        <label><input formControlName="listingGroupBy" type="radio" value="others"><span>For Others</span></label>
+      </div>
+    </div>
+    <div>
+      <span>Location</span>
+      <div>
+        <label>
+          <span>School</span>
+          <mat-select formControlName="school">
+            <mat-option value="uniben">Uniben</mat-option>
+            <mat-option value="unilag">Unilag</mat-option>
+          </mat-select>
+        </label>
+        <label>
+          <!--          TODO disable states for school-->
+          <span>State</span>
+          <mat-select formControlName="state">
+            <mat-option *ngFor="let state of states" [value]="state.id">{{state.name}}</mat-option>
+          </mat-select>
+        </label>
+        <label>
+          <span>Local govt</span>
+          <mat-select formControlName="lga">
+            <mat-option *ngFor="let lga of (lga$ | async)" [value]="lga">{{lga}}</mat-option>
+          </mat-select>
+        </label>
+      </div>
+      <div>
+        <label>
+          <span>Street</span>
+          <input formControlName="street" type="text">
+        </label>
+      </div>
+    </div>
+    <div>
+      <span>About the property</span>
+      <div>
+        <label>
+          <span>Property Type</span>
+          <mat-select formControlName="propertyType">
+            <mat-option value="flat">Flat</mat-option>
+            <mat-option value="self-contain">Self Contain</mat-option>
+            <mat-option value="Duplex">Duplex</mat-option>
+          </mat-select>
+        </label>
+
+        <label>
+          <span>Number of Bedrooms</span>
+          <mat-select formControlName="numberOfRooms">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5+">5+</mat-option>
+          </mat-select>
+        </label>
+      </div>
+      <div>
+        <label>
+          <span>Number of Bathrooms</span>
+          <mat-select formControlName="numberOfBathrooms">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5+">5+</mat-option>
+          </mat-select>
+        </label>
+
+        <div formGroupName="currentRoommateCount">
+          <span>Current roommate count</span>
+          <div class="inline-radio">
+            <label>
+              <input formControlName="male" value="0">
+              <span>Male(s)</span>
+            </label>
+            <label>
+              <input formControlName="female" value="0">
+              <span>Female(s)</span>
+            </label>
+          </div>
+        </div>
+
+        <label>
+          <span>Available rooms to rent</span>
+          <mat-select formControlName="availableRooms">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5+">5+</mat-option>
+          </mat-select>
+        </label>
+      </div>
+      <div>
+        <label>
+          <span>Available property amenities</span>
+          <textarea formControlName="availableProperties" class="h-[140px]"
+                    placeholder="e.g Tv, radio, fridge, fan"></textarea>
+        </label>
+      </div>
+    </div>
+    <div>
+      <span>About the room</span>
+      <div>
+        <span>Shared Rent (Naira)</span>
+        <div>
+          <label>
+            <input formControlName="sharedRentAmount" type="text" placeholder="e.g 50,000">
+          </label>
+          <label>
+            <mat-select formControlName="rentCycles">
+              <mat-option value="yearly">Yearly</mat-option>
+              <mat-option value="monthly">Monthly</mat-option>
+            </mat-select>
+          </label>
+        </div>
+      </div>
+      <div>
+        <span>Monthly Utility cost if applicable</span>
+        <label>
+          <input formControlName="utilityBillPerMonth" type="text">
+        </label>
+      </div>
+      <div>
+        <span>Is room furnished</span>
+        <div class="inline-radio">
+          <label>
+            <input formControlName="isRoomFurnished" value="true" type="radio">
+            <span>Yes</span>
+          </label>
+          <label>
+            <input formControlName="isRoomFurnished" value="false" type="radio">
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label class="!grid relative">
+            <span>Available From</span>
+            <input formControlName="availableDate" [matDatepicker]="picker">
+            <mat-datepicker-toggle [for]="picker" class="absolute top-4 right-0">
+            </mat-datepicker-toggle>
+          </label>
+          <label>
+            <span>Minimum stay in months</span>
+            <mat-select formControlName="minimumStayMonths">
+              <mat-option value="1">1 Month</mat-option>
+              <mat-option value="3">3 Month</mat-option>
+              <mat-option value="6">6 Month</mat-option>
+              <mat-option value="12">12 Month</mat-option>
+            </mat-select>
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <span>Number of roommates already living there</span>
+        <div class="inline-radio">
+          <label>
+            <input formControlName="currentlyRoommateCount" value="1" type="radio">
+            <span>1</span>
+          </label>
+          <label>
+            <input formControlName="currentlyRoommateCount" value="2" type="radio">
+            <span>2</span>
+          </label>
+          <label>
+            <input formControlName="currentlyRoommateCount" value="3" type="radio">
+            <span>3</span>
+          </label>
+          <label>
+            <input formControlName="currentlyRoommateCount" value="4" type="radio">
+            <span>4</span>
+          </label>
+          <label>
+            <input formControlName="currentlyRoommateCount" value="5+" type="radio">
+            <span>5+</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span>Your Preferred Roommates</span>
+      <div>
+        <span>Preferred Gender</span>
+        <div class="inline-radio">
+          <label>
+            <input formControlName="preferredGender" value="male" type="radio">
+            <span>Male</span>
+          </label>
+          <label>
+            <input formControlName="preferredGender" value="female" type="radio">
+            <span>Female</span>
+          </label>
+          <label>
+            <input formControlName="preferredGender" value="any" type="radio">
+            <span>Doesn't matter</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <span>Preferred Occupation</span>
+        <div class="inline-radio flex-wrap">
+          <label>
+            <input formControlName="preferredOccupation" value="student" type="radio">
+            <span>Student</span>
+          </label>
+          <label>
+            <input formControlName="preferredOccupation" value="professional" type="radio">
+            <span>Professional</span>
+          </label>
+          <label>
+            <input formControlName="preferredOccupation" value="corper" type="radio">
+            <span>Youth Corps</span>
+          </label>
+          <label>
+            <input formControlName="preferredOccupation" value="any" type="radio">
+            <span>Doesn't matter</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <span>Preferred Age Range</span>
+        <mat-select formControlName="preferredAgeRange" placeholder="Select preferred age range">
+          <mat-option *ngFor="let age of ageRange" [value]="age">{{age}}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <div>
+      <span>Property Rules</span>
+      <div>
+        <span>Are Families and Children Accepted?</span>
+        <div class="inline-radio">
+          <label>
+            <input formControlName="familyWithChildrenAllowed" value="true" type="radio">
+            <span>Yes</span>
+          </label>
+          <label>
+            <input formControlName="familyWithChildrenAllowed" value="false" type="radio">
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <span>Are Couples Accepted?</span>
+        <div class="inline-radio">
+          <label>
+            <input formControlName="coupleAllowed" value="true" type="radio">
+            <span>Yes</span>
+          </label>
+          <label>
+            <input formControlName="coupleAllowed" value="false" type="radio">
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <span>Are Pets Accepted?</span>
+        <div class="inline-radio">
+          <label>
+            <input formControlName="petsAllowed" value="true" type="radio">
+            <span>Yes</span>
+          </label>
+          <label>
+            <input formControlName="petsAllowed" value="false" type="radio">
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <span>Is Smoking Inside the Property Allowed?</span>
+        <div class="inline-radio">
+          <label>
+            <input formControlName="smokingAllowed" value="true" type="radio">
+            <span>Yes</span>
+          </label>
+          <label>
+            <input formControlName="smokingAllowed" value="false" type="radio">
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span>Customize your AD</span>
+      <div>
+        <label>
+          <span>Ads Title</span>
+          <input formControlName="title" placeholder="e.g Single room to share">
+        </label>
+      </div>
+      <div>
+        <label>
+          <span>Ads Description</span>
+          <textarea formControlName="description" placeholder="e.g Room and palour self contain at akoka"></textarea>
+        </label>
+      </div>
+    </div>
+    <div>
+      <span>Upload Property Photos</span>
+      <div class="flex justify-center">
+        <housemates-image-uploader (files)="getFile($event)"></housemates-image-uploader>
+      </div>
+    </div>
+
+    <button class="max-w-[400px] mx-auto w-11/12 text-white text-center py-2 text-sm rounded-sm bg-primary-blue">
+      SUBMIT
+    </button>
+  </form>
+</section>
+
+<mat-datepicker #picker>
+</mat-datepicker>

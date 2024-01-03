@@ -1,0 +1,13 @@
+table{
+  thead {
+    @apply border-b-2;
+    th {
+      @apply whitespace-nowrap text-left px-2;
+    }
+  }
+  tbody{
+    td{
+      @apply text-sm px-2;
+    }
+  }
+}

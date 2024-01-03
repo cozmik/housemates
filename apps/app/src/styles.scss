@@ -1,1 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* You can add global styles to this file, and also import other style files */
+
+button{
+  @apply rounded-sm;
+}
+
+// TODO add color to cursor;
+
+input, mat-select, textarea {
+  @apply border p-2 w-full focus:outline-primary-green/50 bg-[#fff] resize-none;
+
+  &::placeholder{
+    @apply text-sm;
+  }
+  @apply text-left;
+}
+
+input[type='radio']{
+  @apply h-4 w-4 #{!important};
+  accent-color: #2A9D27;
+}
+

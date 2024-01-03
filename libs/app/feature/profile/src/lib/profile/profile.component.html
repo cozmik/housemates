@@ -1,0 +1,97 @@
+<section>
+
+  <div class="shadow-sm">
+    <div class="bg-primary-blue relative h-16">
+      <div class="h-[65px] w-[65px] rounded-full flex justify-center items-center mx-auto left-0 right-0 absolute
+       top-7 border overflow-hidden border-[3px] border-white">
+        <img height="60" width="60" class="h-full w-auto" ngSrc="./assets/images/profile.png" alt="">
+      </div>
+    </div>
+    <div class="shadow -mt-6">
+      <button
+        (click)="edit = !edit"
+        class="text-xs font-semibold flex border py-1 border-black/40 px-2 mt-8 rounded mr-3 items-center gap-1 ml-auto justify-center">
+        <ng-icon *ngIf="!edit" name="bootstrap-pencil-fill"></ng-icon>
+        <span>{{!edit ? 'EDIT PROFILE' : 'CANCEL'}}</span></button>
+      <ng-container *ngIf="edit; else view">
+        <form [formGroup]="userForm">
+          <label>
+            <span>First Name</span>
+            <input formControlName="firstName" type="text">
+          </label>
+          <label>
+            <span>Last Name</span>
+            <input formControlName="lastName" type="text">
+          </label>
+          <label>
+            <span>Email</span>
+            <input formControlName="email" type="email">
+          </label>
+          <label>
+            <span>Phone</span>
+            <input formControlName="phoneNumber" type="tel">
+          </label>
+          <label>
+            <span>Age Range</span>
+            <mat-select formControlName="ageRange">
+              <mat-option *ngFor="let ar of ageRange" [value]="ar">{{ar}}</mat-option>
+            </mat-select>
+          </label>
+          <label>
+            <span>Sex</span>
+            <mat-select formControlName="sex">
+              <mat-option [value]="'male'">Male</mat-option>
+              <mat-option [value]="'female'">Female</mat-option>
+            </mat-select>
+          </label>
+          <label>
+            <span>Smoker</span>
+            <mat-select formControlName="smoke">
+              <mat-option [value]="true">Smoker</mat-option>
+              <mat-option [value]="false">Non-smoker</mat-option>
+            </mat-select>
+          </label>
+          <label>
+            <span>Hobbies</span>
+            <textarea formControlName="hobbies" class="h-[140px] resize-none w-full"></textarea>
+          </label>
+          <label>
+            <span>About</span>
+            <textarea class="h-[140px] resize-none w-full" formControlName="about">
+            </textarea>
+          </label>
+        </form>
+        <div class="w-full px-4 pb-10">
+          <button (click)="updateUser()" class="text-white w-full bg-primary-green py-2 flex justify-center mt-4">SAVE</button>
+        </div>
+      </ng-container>
+      <ng-template #view>
+        <div class="details" *ngIf="profile">
+            <span>Full Name</span>
+            <span>{{profile.firstName +' '+ profile.lastName | titlecase}}</span>
+            <span>Email</span>
+            <span>{{profile.email}}</span>
+          <span>Phone</span>
+          <span>{{profile.phoneNumber}}</span>
+            <span>Sex</span>
+            <span>{{profile.sex ?? '-' | titlecase}}</span>
+            <span>Age Range</span>
+            <span>{{profile.ageRange ?? '-'}}</span>
+            <span>Smoker</span>
+            <span>{{profile.smoke ? 'Smoker' : 'Non-Smoker'}}</span>
+            <span>About</span>
+            <span>
+            {{profile.about ?? '-'}}
+          </span>
+            <span>Hobbies</span>
+            <span *ngIf="(profile.hobbies?.length ?? 0) > 0 ; else dash">
+              <ng-container *ngFor="let hobby of profile.hobbies; last as last">{{hobby + (last ? '' : ', ') | titlecase}}</ng-container>
+            </span>
+          <ng-template #dash>
+            -
+          </ng-template>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,127 @@
+<article>
+  <div class="hero" style="background: radial-gradient(transparent, rgba(0,0,0, .7)), url('./assets/images/bg.jpg'); background-size: cover">
+
+    <h3>Find a <span>room</span> with an ideal <span>house <br> mate</span> in your preferred <span>location</span></h3>
+
+    <form>
+      <label>
+        <ng-icon name="feather-map-pin"></ng-icon>
+        <input placeholder="Enter Street e.g Ajah">
+      </label>
+      <label>
+        <mat-select (valueChange)="getLga($event)" panelClass="align-left" placeholder="Select state">
+          <mat-option *ngFor="let state of states" [value]="state.id">{{state.name}}</mat-option>
+        </mat-select>
+      </label>
+      <label>
+        <mat-select placeholder="Select LGA">
+          <mat-option *ngFor="let lga of (lgas | async)" [value]="lga">{{lga}}</mat-option>
+        </mat-select>
+      </label>
+      <button type="button" (click)="searchListings()" class="col-span-2">SEARCH</button>
+    </form>
+  </div>
+
+  <div class="popular-cities-section">
+    <h3>Find Housemates within popular cities</h3>
+    <div class="popular-cities">
+      <div>
+        <img src="assets/images/city.png" alt="">
+        <h4>Akoka, Yaba</h4>
+        <button>VIEW LISTINGS</button>
+      </div>
+      <div>
+        <img src="assets/images/city.png" alt="">
+        <h4>Akoka, Yaba</h4>
+        <button>VIEW LISTINGS</button>
+      </div>
+      <div>
+        <img src="assets/images/city.png" alt="">
+        <h4>Akoka, Yaba</h4>
+        <button>VIEW LISTINGS</button>
+      </div>
+      <div>
+        <img src="assets/images/city.png" alt="">
+        <h4>Akoka, Yaba</h4>
+        <button>VIEW LISTINGS</button>
+      </div>
+      <div>
+        <img src="assets/images/city.png" alt="">
+        <h4>Akoka, Yaba</h4>
+        <button>VIEW LISTINGS</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+    <h3>
+      Over 2000+ students trust Roommatesfinder
+    </h3>
+
+    <div>
+      Roommatesfinder is the largest online roommate community in Africa, connecting students, professionals,
+      and agents with portfolios of rooms, flats, self-contains for rent or other shared rentals.
+    </div>
+
+    <div>
+      <button>POST A ROOM</button>
+      <button>FIND A ROOM MATE</button>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    <div>
+      <fa-icon [icon]="quote"></fa-icon>
+      <h3>Customer <span>Stories</span></h3>
+
+      <div class="testimonial-cards">
+        <div class="story-card">
+          <div class="profile-img">
+            <img src="assets/images/profile.png" alt="">
+          </div>
+          <h4>Mary Jane</h4>
+          <div class="occupation">Student</div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Alias distinctio dolorum eveniet fugiat illo, mollitia quia ullam vero. Inventore, nobis!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-download">
+    <h3>RoommatesFinder</h3>
+
+    <div class="info-text">Download our app for easier access and better expirience</div>
+
+    <div class="button-section">
+      <button>
+        <fa-icon [icon]="apple"></fa-icon>
+        <div>
+          <span>Download on the</span>
+          <span>AppStore</span>
+        </div>
+      </button>
+
+      <button>
+        <fa-icon [icon]="googlePlay"></fa-icon>
+        <div>
+          <span>GET IT ON</span>
+          <span>Google Play</span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div class="subscription">
+    <h3>Sign up for our newsletter</h3>
+    <div>Don't miss our new offers and keep up to date.</div>
+
+    <form>
+      <label>
+        <fa-icon [icon]="envelope"></fa-icon>
+        <input placeholder="Your email address...">
+      </label>
+      <button>SIGN ME UP</button>
+    </form>
+  </div>
+</article>

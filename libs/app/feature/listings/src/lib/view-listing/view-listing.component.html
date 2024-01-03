@@ -1,0 +1,196 @@
+<section>
+  <div class="shadow p-2 pb-4">
+    <div class="relative">
+      <button class="right-4 navigation-button">
+        <ng-icon size="24px" strokeWidth="4px" name="feather-chevron-right"></ng-icon>
+      </button>
+      <div class="h-[200px] w-full relative">
+        <ng-template [ngIf]="listing">
+          <img height="100" width="200" class="w-auto h-full" [ngSrc]="listing!.photos[0].main" alt="">
+        </ng-template>
+        <div class="indicators">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <button class="navigation-button left-4">
+        <ng-icon size="24px" strokeWidth="4px" name="feather-chevron-left"></ng-icon>
+      </button>
+    </div>
+    <div class="mt-3">
+      <h3 class="text-lg font-medium">{{listing?.title}}</h3>
+      <div class="flex items-center gap-2 my-3">
+        <ng-icon name="bootstrap-geo-alt-fill" class="text-primary-yellow"></ng-icon>
+        <span>{{listing?.street}}. {{listing?.state}}</span>
+      </div>
+      <div class="more-info">
+        <div>
+          <h4>Minimum Stay</h4>
+          <span>{{listing?.minimumStayMonths}} months</span>
+        </div>
+        <div>
+          <h4>Available Date</h4>
+          <span>{{listing?.availableDate | date : 'MMM. dd'}}</span>
+        </div>
+        <div>
+          <h4>Monthly Utility Cost</h4>
+          <span>{{listing?.utilityBillPerMonth | currency : 'NGN' : 'code' : '1.0-0'}}</span>
+        </div>
+        <div>
+          <h4>Rent per Month</h4>
+          <span>{{listing?.sharedRentAmount | currency : 'NGN' : 'code' : '1.0-0'}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="more-details">
+    <div>
+      <h3>Description</h3>
+      <div>
+        {{listing?.description}}
+      </div>
+    </div>
+    <div>
+      <h3>About the Property</h3>
+      <div>
+        <h4>Property type:</h4>
+        <div>
+          <span>{{listing?.propertyType}}</span>
+        </div>
+      </div>
+      <div>
+        <h4>Total number of Bedrooms:</h4>
+        <div>
+          <span>{{listing?.numberOfRooms}}</span>
+        </div>
+      </div>
+      <div>
+        <h4>Total number of Bathrooms:</h4>
+        <div>
+          <span>{{listing?.numberOfBathrooms}}</span>
+        </div>
+      </div>
+      <div>
+        <h4>Available rooms to rent:</h4>
+        <div>
+          <span>{{listing?.availableRooms}}</span>
+        </div>
+      </div>
+      <div>
+        <h4>Amenities:</h4>
+        <div>
+          <span *ngFor="let prop of listing?.availableProperties; last as last">{{prop | titlecase}}{{last ? '' : ','}}</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Current Roommates</h3>
+      <div>
+        <h4>No of roommates already living there:</h4>
+        <div>
+          <span *ngIf="(listing?.currentRoommateCount?.male ?? 0) > 0">{{listing?.currentRoommateCount?.male}}
+            Male
+            {{(listing?.currentRoommateCount?.male ?? 0) > 1 ? 's': ''}}{{(listing?.currentRoommateCount?.female ?? 0) > 0 ? ',': ''}}</span>
+          <span *ngIf="(listing?.currentRoommateCount?.female ?? 0) > 0">
+            {{listing?.currentRoommateCount?.female}}
+            Female{{(listing?.currentRoommateCount?.female ?? 0) > 1 ? 's' : ''}}</span>
+
+          <span *ngIf="((listing?.currentRoommateCount?.male ?? 0) === 0) && ((listing?.currentRoommateCount?.female ?? 0) === 0)">
+            No Roommates
+          </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Preferred Roommates</h3>
+      <div>
+        <h4>Gender:</h4>
+        <div>
+          <span>{{listing?.preferredGender | titlecase}}</span>
+        </div>
+      </div>
+      <div>
+        <h4>Occupation:</h4>
+        <div>
+          <span>{{listing?.preferredOccupation | titlecase}}</span>
+        </div>
+      </div>
+      <div>
+        <h4>Age range:</h4>
+        <div>
+          <span>{{listing?.preferredAgeRange}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="listing">
+      <h3>Property Rules</h3>
+      <div>
+        <h4>Families and Children:</h4>
+        <div>
+          <ng-container *ngTemplateOutlet="checkTrue; context: {check: listing?.familyWithChildrenAllowed}"></ng-container>
+        </div>
+      </div>
+      <div>
+        <h4>Couples:</h4>
+        <div>
+          <ng-container *ngTemplateOutlet="checkTrue; context: {check: listing?.coupleAllowed}"></ng-container>
+        </div>
+      </div>
+      <div>
+        <h4>Pet:</h4>
+        <div>
+          <ng-container *ngTemplateOutlet="checkTrue; context: {check: listing?.petsAllowed}"></ng-container>
+        </div>
+      </div>
+      <div>
+        <h4>Smoking:</h4>
+        <div>
+          <ng-container *ngTemplateOutlet="checkTrue; context: {check: listing?.smokingAllowed}"></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shadow rounded-md mt-4 p-2 py-6 mb-10">
+    <h3 class="text-primary-blue text-lg font-bold">{{listing?.user?.firstName}}</h3>
+    <div class="text-sm">
+      <div class="py-2">
+        <span>{{listing?.user?.sex}}</span> / <span>{{listing?.user?.profession}}</span>
+      </div>
+      <div class="mb-4">
+        <span>Age:</span>
+        <span>{{listing?.user?.ageRange}}</span>
+      </div>
+    </div>
+    <div>
+      <textarea placeholder="Write a message to Sharon"
+                class="h-40 p-2 text-sm w-full border resize-none rounded"></textarea>
+    </div>
+
+    <div class="mt-6">
+      <button class="w-10/12 mx-auto flex items-center text-sm text-white py-3 bg-primary-green justify-center gap-2">
+        <span>SEND MESSAGE</span>
+        <ng-icon name="bootstrap-send-fill"></ng-icon>
+      </button>
+      <div class="orPart">
+        <span class="text-sm">OR</span>
+      </div>
+      <button
+        class="w-10/12 mx-auto items-center flex border border-primary-green text-sm py-3 justify-center gap-2 text-primary-green">
+        <span>SHOW NUMBER</span>
+        <ng-icon name="bootstrap-telephone-fill"></ng-icon>
+      </button>
+    </div>
+  </div>
+</section>
+
+<ng-template let-check="check" #checkTrue>
+  <ng-icon *ngIf="check; else other" size="14px" class="text-[#5AC01C]" name="feather-check"></ng-icon>
+  <ng-template #other>
+    <ng-icon size="14px" class="text-[#FF2407]" name="feather-x"></ng-icon>
+  </ng-template>
+</ng-template>

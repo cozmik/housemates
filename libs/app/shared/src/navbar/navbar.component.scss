@@ -1,0 +1,13 @@
+.dropdown{
+  @apply text-white bg-black py-4 absolute w-screen h-screen;
+
+  div{
+    @apply flex flex-wrap justify-center gap-4 mt-4 last:mt-8;
+    button {
+      @apply text-xs px-8 py-2 first:border-white first:border;
+    }
+    a{
+      @apply text-[.8em];
+    }
+  }
+}

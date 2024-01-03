@@ -1,0 +1,38 @@
+<article>
+  <section>
+    <form>
+      <label>
+        <ng-icon name="feather-map-pin"></ng-icon>
+        <input placeholder="Enter Street e.g Ajah">
+      </label>
+      <label>
+        <mat-select [ngModelOptions]="{standalone: true}" (valueChange)="getLga($event)" panelClass="align-left" [(ngModel)]="selectedState" placeholder="Select state">
+          <mat-option *ngFor="let state of states" [value]="state.id">{{state.name}}</mat-option>
+        </mat-select>
+      </label>
+      <label>
+        <mat-select placeholder="Select LGA">
+          <mat-option *ngFor="let lga of (lgas | async)" [value]="lga">{{lga}}</mat-option>
+        </mat-select>
+      </label>
+      <button type="button">REFINE SEARCH</button>
+    </form>
+
+    <h3><span>{{listings?.data?.length ?? 0}}</span> Room{{(listings?.data?.length ?? 0) > 1 ? 's' : ''}} found</h3>
+    <div class="filters">
+      <div class="filter">Sort by
+        <button type="button">Price: High to Low</button>
+      </div>
+      <button class="flex justify-between items-center">
+        <span>Filter</span>
+        <ng-icon name="feather-filter"></ng-icon>
+      </button>
+    </div>
+  </section>
+
+  <div class="px-4 py-8 grid gap-6">
+    <ng-container *ngFor="let room of listings?.data ?? [];">
+      <housemates-listing [data]="room"  [routerLink]="room.id"></housemates-listing>
+    </ng-container>
+  </div>
+</article>

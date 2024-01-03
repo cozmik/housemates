@@ -1,0 +1,122 @@
+<section class="p-6">
+  <button (click)="dialogRef.close(null)" class="absolute top-2 right-2 p-1 focus:outline-none">
+    <ng-icon size="32px" name="feather-x"></ng-icon>
+  </button>
+  <ng-container *ngIf="!register; else signIn">
+    <h3>Create an Account</h3>
+    <article>
+      <form class="!gap-4" [formGroup]="registrationForm">
+        <div>
+          <label>
+            <span>First Name</span>
+            <input formControlName="firstName" type="text">
+          </label>
+          <label>
+            <span>Last Name</span>
+            <input formControlName="lastName" type="text">
+          </label>
+        </div>
+        <div>
+          <label>
+            <span>Email</span>
+            <input formControlName="email" type="email" autocomplete="email">
+          </label>
+          <label>
+            <span>Phone number</span>
+            <input formControlName="phoneNumber" type="tel" autocomplete="phone">
+          </label>
+        </div>
+        <div>
+          <label>
+            <span>Age Range</span>
+            <mat-select formControlName="ageRange" placeholder="Select your range">
+              <mat-option *ngFor="let range of ageRange" [value]="range">{{range}}</mat-option>
+            </mat-select>
+          </label>
+        </div>
+
+        <div>
+          <label class="relative">
+            <span>Password</span>
+            <input formControlName="password" class="pr-6" autocomplete="current-password" [type]="showPass ? 'text' : 'password'">
+            <button class="absolute right-1 top-8" type="button" (click)="showPass = !showPass">
+              <fa-icon class="text-black/60" [icon]="showPass ? see : hide"></fa-icon>
+            </button>
+          </label>
+        </div>
+        <button [disabled]="auth?.loading" type="button" class="signup" (click)="registerUser()">
+          <span>SIGN UP & FIND A HOUSE MATE</span>
+          <ng-icon *ngIf="auth?.loading" class="animate-spin" name="feather-loader"></ng-icon>
+        </button>
+      </form>
+
+      <div class="font-bold my-4 text-sm text-black/80">
+        <span class="text-xs font-semibold text-black">OR</span>
+      </div>
+
+      <div>
+        <button class="bg-[#3B5999]"><span>sign up with facebook</span>
+          <fa-icon [icon]="facebook"></fa-icon>
+        </button>
+        <button class="bg-[#E04A32]" type="button"><span>sign up with google</span>
+          <fa-icon [icon]="google"></fa-icon>
+        </button>
+      </div>
+
+      <div class="!block text-xs !font-semibold mt-8">
+        <span class="text-black/60 !w-[unset] inline-block mr-1 w-full">Already have an account? </span>
+        <button (click)="register = !register" type="button" class="!text-primary-blue text-xs !w-[unset] !capitalize !inline !p-0">Sign In</button>
+      </div>
+    </article>
+
+  </ng-container>
+
+  <ng-template #signIn>
+    <h3>Login to your Account</h3>
+
+    <article>
+      <form class="!gap-3 !mb-6" [formGroup]="loginForm">
+        <label>
+          <span class="sr-only">Enter email or phone number</span>
+          <input formControlName="email" type="text" placeholder="Email / Phone number">
+        </label>
+
+        <label>
+          <span class="sr-only">Enter password</span>
+          <input formControlName="password" type="password" placeholder="Password">
+        </label>
+
+        <div class="text-right"><span class="text-xs text-black/70">Forgot your password?</span></div>
+
+        <button (click)="login()" class="w-full text-[#fff] uppercase bg-primary-blue rounded-none text-xs p-3">
+          <span>SIGN IN</span>
+          <ng-icon *ngIf="auth?.loading" class="animate-spin" name="feather-loader"></ng-icon>
+        </button>
+      </form>
+
+      <hr>
+
+      <div class="mt-4">
+        <div>
+          <span class="text-xs">If you don't already have an account click the button below to create your account</span>
+        </div>
+
+        <div>
+          <button (click)="register = !register" class="bg-[#ffffff] border uppercase border-primary-blue rounded-none !text-xs !text-primary-blue !p-3 w-full">CREATE ACCOUNT</button>
+        </div>
+
+        <div><span class="text-xs font-semibold text-black">OR</span></div>
+
+        <div class="flex flex-col gap-4">
+          <button class="bg-[#3B5999]"><span class="text-xs">sign in with facebook</span>
+            <fa-icon [icon]="facebook"></fa-icon>
+          </button>
+          <button class="bg-[#E04A32]" type="button"><span class="text-xs">sign in with google</span>
+            <fa-icon [icon]="google"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </article>
+
+  </ng-template>
+</section>

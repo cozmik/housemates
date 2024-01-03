@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  @apply min-h-screen;
+
+  section {
+    @apply pt-24 px-4;
+  }
+
+  form {
+    @apply grid grid-cols-3 gap-2;
+
+    button {
+      @apply rounded-sm text-white text-xs bg-primary-green py-3;
+    }
+
+    label:first-child {
+      @apply col-span-3 w-full flex relative;
+      ng-icon {
+        @apply absolute top-2 h-3 w-3 left-2 top-3 stroke-black/40 #{!important};
+      }
+
+      input {
+        @apply w-full p-2 pl-8;
+      }
+    }
+  }
+
+  h3{
+    @apply mb-2 -mx-4 font-medium mt-4 bg-[#F0F1F5] px-4 p-2 #{!important};
+    >span {
+      @apply text-primary-blue;
+    }
+  }
+
+  .filters {
+    @apply flex gap-4 justify-between text-sm;
+    .filter{
+      @apply border-b border-gray-500;
+    }
+    button {
+      @apply p-1;
+    }
+
+    >button{
+      @apply text-primary-green border-b w-4/12 border-primary-green;
+    }
+  }
+}

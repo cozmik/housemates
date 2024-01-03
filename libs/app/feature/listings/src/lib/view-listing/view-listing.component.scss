@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  @apply min-h-screen;
+
+  section {
+    @apply pt-24 px-4;
+  }
+
+  .indicators{
+    @apply flex justify-center absolute bottom-2 w-full gap-2 items-center;
+    span{
+      @apply h-1.5 w-1.5 rounded-full bg-white/60;
+
+      &.active{
+        @apply bg-white;
+      }
+    }
+  }
+
+  .more-info{
+    @apply grid grid-cols-2 gap-2 mt-2;
+    >div{
+      @apply px-4 grid;
+      h4{
+        @apply text-xs text-black/70;
+      }
+      span{
+        @apply font-medium text-black/80 mt-1;
+      }
+    }
+  }
+
+  .more-details{
+    @apply rounded shadow-md mt-4 p-2 py-4 mb-6;
+    >div{
+      @apply mb-6;
+      h3{
+        @apply font-bold text-sm my-2;
+      }
+      >div{
+        @apply text-xs flex gap-2 my-1 items-center;
+
+        >div{
+          @apply flex gap-1 font-semibold items-end;
+        }
+      }
+    }
+  }
+  .navigation-button{
+    @apply h-6 absolute top-[45%]  z-10 flex items-center justify-center w-6 bg-white rounded-full;
+    mix-blend-mode: screen;
+  }
+  .orPart{
+    @apply py-3 flex justify-center text-black/40 gap-3 w-11/12 items-center mx-auto;
+    &:after, &:before {
+      content: '';
+      @apply w-full block h-[1px] bg-black/20;
+    }
+  }
+}

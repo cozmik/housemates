@@ -14,7 +14,36 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@housemates/api/feature/auth": ["libs/api/feature/auth/src/index.ts"],
+      "@housemates/api/feature/listings": [
+        "libs/api/feature/listings/src/index.ts"
+      ],
+      "@housemates/api/feature/schools": [
+        "libs/api/feature/schools/src/index.ts"
+      ],
+      "@housemates/api/feature/state": ["libs/api/feature/state/src/index.ts"],
+      "@housemates/api/shared/utility": [
+        "libs/api/shared/utility/src/index.ts"
+      ],
+      "@housemates/api/user": ["libs/api/feature/user/src/index.ts"],
+      "@housemates/app/feature/home": ["libs/app/feature/home/src/index.ts"],
+      "@housemates/app/feature/profile": [
+        "libs/app/feature/profile/src/index.ts"
+      ],
+      "@housemates/app/shared": ["libs/app/shared/src/index.ts"],
+      "@housemates/app/store": ["libs/app/store/src/index.ts"],
+      "@housemates/icons": ["libs/icons/src/index.ts"],
+      "@housemates/listings": ["libs/app/feature/listings/src/index.ts"],
+      "@housemates/shared/environments": [
+        "libs/shared/environments/src/index.ts"
+      ],
+      "@housemates/shared/interceptor": [
+        "libs/shared/interceptor/src/index.ts"
+      ],
+      "@housemates/shared/model": ["libs/shared/model/src/index.ts"],
+      "@housemates/shared/utils": ["libs/shared/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,10 @@
+.details{
+  @apply text-xs flex my-2 text-black/60;
+  span{
+    @apply flex px-3 py-1 first:pl-0 font-semibold;
+
+    &:nth-of-type(2){
+      @apply border-x;
+    }
+  }
+}

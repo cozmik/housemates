@@ -1,0 +1,43 @@
+<section  class="px-4 mb-20 mt-24">
+  <div *ngIf="!profileComplete" class="w-full border border-primary-blue p-2 text-xs flex mb-3">
+    <ng-icon name="bootstrap-exclamation-circle-fill" class="mr-1 mt-1 text-primary-blue"></ng-icon>
+    <span>You are almost done. Kindly complete your profile to post a room</span>
+  </div>
+
+  <div class="mb-6 grid gap-4">
+    <div class="flex justify-between items-center shadow-[0_0_10px_0_rgba(0,0,0,0.2)] p-4 rounded-md">
+      <div>
+        <ng-icon size="52px" class="text-primary-blue" name="bootstrap-house-fill"></ng-icon>
+      </div>
+      <div class="grid justify-items-end text-sm">
+        <h3 class="font-semibold text-lg">ACTIVE LISTINGS</h3>
+        <span class="text-2xl font-semibold">{{stats?.active ?? 0}}</span>
+        <button class="text-primary-blue flex items-center gap-1">
+          <span>View All</span>
+          <ng-icon name="feather-chevron-right"></ng-icon>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="!profileComplete" class="flex justify-between shadow-[0_0_10px_0_rgba(0,0,0,0.2)] items-center p-4 rounded-md">
+      <ng-icon size="66px" class="text-primary-blue" name="bootstrap-person-fill"></ng-icon>
+      <div class="w-8/12 grid gap-2 justify-items-end text-sm">
+        <h3 class="font-semibold text-lg">MY PROFILE</h3>
+        <div class="w-full relative h-4 rounded-md bg-gray-100">
+          <div class="absolute rounded-md h-full w-[90%] bg-primary-green"></div>
+        </div>
+        <span class="font-semibold text-black/80 text-sm">90% Complete</span>
+      </div>
+    </div>
+
+    <button routerLink="post-room" class="font-semibold flex p-6 gap-6 items-center bg-primary-green shadow-[0_0_10px_0_rgba(0,0,0,0.2)] text-white rounded-md">
+      <ng-icon size="60px" strokeWidth="4px" name="feather-plus"></ng-icon>
+      <span>POST A ROOM</span>
+    </button>
+  </div>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</section>

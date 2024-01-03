@@ -1,0 +1,22 @@
+<div class="grid w-full min-w-[300px]">
+    <label for="inputFile" class="w-full flex gap-4">
+      <div class="flex w-full p-4 rounded-sm grid justify-center items-center gap-2 h-[100px] border-dashed border-2">
+        <span class="text-center"><ng-icon class="text-3xl" name="bootstrapImageAlt"></ng-icon></span>
+        <div class="flex gap-2 -mt-4">
+          <span>Drag and drop or</span> <span class="underline">Browse</span>
+        </div>
+      </div>
+    </label>
+
+  <input (input)="addFile($event.target)" id="inputFile" hidden type="file">
+
+  <div class="w-full mt-4 grid gap-2">
+    <div *ngFor="let img of filesArr; index as i;" class="flex justify-between items-center rounded-sm py-3 px-4 shadow">
+      <span>{{img.name | shorten : 15 : '...'}}</span>
+      <button (click)="deleteImage(i)"
+              class="w-[20px] h-[20px] flex justify-center items-center rounded-full bg-[#e53d35]/60">
+        <ng-icon class="text-white" name="bootstrapX"></ng-icon>
+      </button>
+    </div>
+  </div>
+</div>

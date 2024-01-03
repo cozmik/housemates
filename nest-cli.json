@@ -1,0 +1,73 @@
+{
+  "projects": {
+    "listings": {
+      "type": "library",
+      "root": "libs/libs/backend/listings",
+      "entryFile": "index",
+      "sourceRoot": "libs/libs/backend/listings/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/libs/backend/listings/tsconfig.lib.json",
+        "plugins": [
+          "@nestjs/swagger"
+        ]
+      }
+    },
+    "listing": {
+      "type": "library",
+      "root": "/libs/backend/listing",
+      "entryFile": "index",
+      "sourceRoot": "/libs/backend/listing/src",
+      "compilerOptions": {
+        "tsConfigPath": "/libs/backend/listing/tsconfig.lib.json"
+      }
+    },
+    "auth": {
+      "type": "library",
+      "root": "/libs/backend/auth",
+      "entryFile": "index",
+      "sourceRoot": "/libs/backend/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "/libs/backend/auth/tsconfig.lib.json"
+      }
+    },
+    "notification": {
+      "type": "library",
+      "root": "/libs/backend/notification",
+      "entryFile": "index",
+      "sourceRoot": "/libs/backend/notification/src",
+      "compilerOptions": {
+        "tsConfigPath": "/libs/backend/notification/tsconfig.lib.json"
+      }
+    },
+    "message": {
+      "type": "library",
+      "root": "/libs/backend/message",
+      "entryFile": "index",
+      "sourceRoot": "/libs/backend/message/src",
+      "compilerOptions": {
+        "tsConfigPath": "/libs/backend/message/tsconfig.lib.json"
+      }
+    },
+    "store": {
+      "type": "library",
+      "root": "/libs/app/store",
+      "entryFile": "index",
+      "sourceRoot": "/libs/app/store/src",
+      "compilerOptions": {
+        "tsConfigPath": "/libs/app/store/tsconfig.lib.json"
+      }
+    },
+    "schools": {
+      "type": "library",
+      "root": "/libs/api/feature/schools",
+      "entryFile": "index",
+      "sourceRoot": "/libs/api/feature/schools/src",
+      "compilerOptions": {
+        "tsConfigPath": "/libs/api/feature/schools/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}

@@ -1,0 +1,45 @@
+::ng-deep .mat-dialog-container{
+  @apply  rounded-none relative;
+}
+
+section{
+  @apply text-center;
+  h3{
+    @apply text-left text-sm mb-4 font-semibold;
+  }
+  form{
+    @apply mt-4 flex flex-col gap-2;
+    div {
+      @apply flex flex-col gap-2;
+      label {
+        span {
+          @apply block font-semibold text-sm text-left pb-[4px];
+        }
+      }
+    }
+    .signup{
+      @apply text-[#fff] bg-primary-blue p-3 mt-4 flex justify-center gap-2 items-center;
+    }
+  }
+
+
+  article {
+    >div {
+      @apply flex flex-col gap-4;
+      button {
+        @apply uppercase font-bold flex items-center p-2 w-full text-white gap-3 text-sm justify-center;
+
+        fa-icon{
+          @apply text-lg;
+        }
+      }
+    }
+  }
+}
+
+button{
+  @apply text-xs;
+  span{
+    @apply text-xs;
+  }
+}

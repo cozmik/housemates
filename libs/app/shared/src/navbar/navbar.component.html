@@ -1,0 +1,68 @@
+<nav [ngClass]="open ? '!bg-black ' + classList : classList" class="w-screen z-10 bg-black" [style.background]="bgColor"
+     (window:scroll)="onWindowScroll($event)">
+  <div class="flex p-4 justify-between items-center border-b-white/10" [class.border-b]="open">
+    <a href="" class="h-10 inline-block">
+      <img [priority]="true" width="150" height="62" ngSrc="./assets/images/hmf-light.png" alt="housemate finder">
+    </a>
+
+    <button class="text-white flex items-center gap-2" (click)="open = !open">
+      <ng-icon class="text-3xl" *ngIf="!loggedIn" name="feather-menu"></ng-icon>
+      <span *ngIf="loggedIn" class="inline-block border border-white overflow-hidden h-8 w-8 rounded-full">
+        <ng-template [ngIf]="profile">
+          <img *ngIf="profile.userProfile; else placeholder" class="h-auto w-full" height="50" [priority]="true" width="50" [ngSrc]="profile.userProfile" [alt]="profile?.firstName">
+        </ng-template>
+        <ng-template #placeholder>
+          <img class="h-auto w-full" height="50" width="50"  ngSrc="./assets/images/profile.png" [alt]="profile?.firstName">
+        </ng-template>
+      </span>
+      <span class="text-xs text-shadow" *ngIf="loggedIn">Kelvin</span>
+    </button>
+  </div>
+
+
+  <div class="dropdown relative" [class]="open ? '' : 'top-[-100vh]'">
+
+    <div *ngIf="loggedIn">
+      <ul class="w-full mx-4 grid gap-6">
+        <li>
+          <a routerLink="profile">
+            PROFILE
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span>NOTIFICATION</span>
+            <span>5</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="profile/listings">
+            MY LISTINGS
+          </a>
+        </li>
+        <li>
+          <a routerLink="profile/change-password">
+            CHANGE PASSWORD
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            SIGN OUT
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="!loggedIn">
+      <button (click)="openAuthModal()">SIGN IN</button>
+      <button type="button" class="bg-primary-blue text-white">POST A ROOM</button>
+    </div>
+    <div [class.!justify-start]="loggedIn" class="mx-4 !mt-6">
+      <a href="">HELP</a>
+    </div>
+
+    <div class="absolute bottom-[100px] text-white/50 text-sm flex justify-center w-full">
+      &copy; {{year}} Housematesfinder
+    </div>
+  </div>
+</nav>

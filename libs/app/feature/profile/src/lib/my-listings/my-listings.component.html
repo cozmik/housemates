@@ -1,0 +1,87 @@
+<section class="px-4 mb-20 mt-32">
+  <div class="flex justify-between mb-2">
+    <button class="border px-2 py-1">
+      Filter
+    </button>
+    <button class="border px-2 py-1">
+      Add new
+    </button>
+  </div>
+  <div class="w-full overflow-auto">
+    <table class="w-full">
+      <thead>
+      <tr>
+        <th class="w-[200px]">Title</th>
+        <th>Amount</th>
+        <th>Current Roommates</th>
+        <th>Preferred Roommates</th>
+        <th>Proper Rules</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let _ of [].constructor(4)" class="even:bg-gray-100">
+        <td>
+          <div class="flex gap-2 w-[280px] h-[72px] py-2">
+            <div class="relative">
+              <div class="h-[50px] w-[60px] absolute" *ngFor="let _ of [].constructor(3); let i = index"
+                   [style.top.px]="5*i" [style.left.px]="5*i">
+                <img height="70" width="70" class="h-full border-2 border w-auto"
+                     ngSrc="./assets/images/living-room.jpg" alt="">
+              </div>
+              <span class="p-2 border-2 border-white rounded-full w-6 h-6
+               flex justify-center items-center font-bold text-lg
+                text-white bg-black/80 absolute top-1 left-1">5</span>
+            </div>
+            <span class="inline-block w-[200px] pt-2 ml-[70px]">
+          Roommate needed for apartment near Unilag campus
+          </span>
+          </div>
+        </td>
+        <td>
+          <div class="grid w-[100px]">
+            <span
+              class="text-lg font-semibold text-primary-green">{{20000 | currency : 'NGN' : 'symbol-narrow' : '1.0-0'}}</span>
+            <span class="text-sm font-semibold">{{4000 | currency : 'NGN' : 'symbol-narrow' : '1.0-0'}}</span>
+          </div>
+        </td>
+        <td>
+          <span>1 male</span>
+          <span>1 female</span>
+        </td>
+        <td>
+          <div class="flex flex-wrap w-[240px] gap-2 text-left">
+            <div class="flex gap-1 text-left">
+              <span>Gender:</span>
+              <span class="font-semibold">male</span>
+            </div>
+            <div class="flex gap-1 text-left">
+              <span class="whitespace-nowrap">Age range:</span>
+              <span class="whitespace-nowrap font-semibold">18 - 25</span>
+            </div>
+            <div class="flex gap-1 text-left">
+              <span>Occupation:</span>
+              <span class="whitespace-nowrap font-semibold">Banker</span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="flex w-[150px] flex-wrap">
+            <span class="whitespace-nowrap">Family and children</span>,
+            <span>Couples</span>,
+            <span>Pets</span>,
+            <span>Smoking</span>
+          </div>
+        </td>
+        <td>
+          <span class="whitespace-nowrap">28 - 12 -2022</span>
+        </td>
+        <td>
+          <span class="text-sm bg-primary-green text-white p-1 rounded text-center px-4">Published</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

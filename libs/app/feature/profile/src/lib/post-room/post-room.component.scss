@@ -1,0 +1,32 @@
+form{
+  @apply pb-6;
+  >div{
+    @apply border-b last:border-none mb-6 pb-4;
+    >span{
+      @apply inline-block font-semibold py-4;
+    }
+    >div{
+      >span{
+        @apply text-sm text-black/60;
+      }
+    }
+
+    label{
+      @apply mb-4 block;
+      span{
+        @apply text-sm text-black/60;
+      }
+    }
+
+    .inline-radio{
+      @apply flex gap-x-6 mt-2;
+      label{
+        @apply inline-flex items-center gap-2;
+
+        input[type='radio'] {
+          @apply inline w-min;
+        }
+      }
+    }
+  }
+}

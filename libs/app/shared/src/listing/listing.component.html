@@ -1,0 +1,28 @@
+<div class="rounded-md shadow-md overflow-hidden">
+  <div class="flex items-end bg-center !bg-cover px-4 pb-1 bg-cover h-32 w-full"
+       style="background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.6)),
+        url({{data.photos[0].thumbnail}})">
+    <div class="flex justify-between w-full text-white">
+      <div class="grid items-center">
+        <span class="text-lg font-medium">{{data.user?.firstName}}</span>
+        <span>{{data?.user?.sex}} / {{data.user?.profession}}</span>
+      </div>
+      <div class="grid justify-items-end">
+        <span class="font-medium text-2xl text-primary-green">{{data.sharedRentAmount | currency : 'NGN': 'symbol': '1.0-0'}}</span>
+        <span>Rent per Month</span>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 pt-2 py-3">
+    <h3 class="text-[.9em] text-black/80 font-medium">{{data.title}}</h3>
+    <div class="details">
+      <span>{{data.propertyType}}</span>
+      <span>{{data.availableDate | date : 'dd MMM.'}} </span>
+      <span>{{data.currentlyRoommateCount}} roommate{{data.currentlyRoommateCount > 1 ? 's' : ''}}</span>
+    </div>
+    <div class="flex gap-1 mt-1 items-center text-xs font-semibold">
+      <ng-icon class="text-primary-yellow" name="bootstrap-geo-alt-fill"></ng-icon>
+      <span class="text-black/60">{{data.street}}, {{data.state}}.</span>
+    </div>
+  </div>
+</div>
